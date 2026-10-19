@@ -13,9 +13,6 @@ project(Portability
 
 option(BUILD_TESTING "Build the tests verifying library functionality" ON)
 
-# Find Conan dependencies
-find_package(GTest REQUIRED)
-
 # Provide a namespaced alias
 add_library(portability STATIC)
 add_library(synodic::portability ALIAS portability)
@@ -39,7 +36,7 @@ target_sources(portability
 	FILE_SET HEADERS
 	BASE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include
 	FILES
-		include/portability/macros.h
+	include/portability/macros.h
 )
 
 add_subdirectory(
@@ -57,6 +54,8 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/src FILES ${file_list})
 if(BUILD_TESTING AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 	# Do not include CTest because it adds targets and integrations we do not want to support
 	enable_testing()
+
+	find_package(GTest REQUIRED)
 
 	add_subdirectory(
 		tests
@@ -94,6 +93,7 @@ install(EXPORT portabilityTargets
 	FILE portabilityTargets.cmake
 	NAMESPACE synodic::
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/portability
+	CXX_MODULES_DIRECTORY cxx-modules
 )
 
 install(
