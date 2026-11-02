@@ -15,6 +15,10 @@
 				"type": "equals",
 				"lhs": "${hostSystemName}",
 				"rhs": "Windows"
+			},
+			"cacheVariables": {
+				"CMAKE_C_FLAGS_INIT": "/W4",
+				"CMAKE_CXX_FLAGS_INIT": "/W4"
 			}
 		},
 		{
