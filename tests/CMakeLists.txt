@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 4.5 FATAL_ERROR)
 
 project(tests
 	DESCRIPTION "Test project for the Portability library"

@@ -30,6 +30,7 @@ dependencies = ['gtest==1.17.0', 'cppaste>=0.0.0.dev1']
 [tool.cppython.generators.cmake]
 preset_file = "tool/cmake/platform/common/CMakePresets.json"
 configuration_name = "default"
+minimum-version = "4.5.0rc1"
 
 [tool.cppython.providers.conan]
 remotes = []
