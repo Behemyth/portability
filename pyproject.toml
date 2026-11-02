@@ -25,7 +25,10 @@ docs = ["zensical>=0.0.51"]
 native = ["cppython[cmake,conan,git]", "ninja>=1.13.0"]
 
 [tool.cppython]
-dependencies = ['gtest==1.17.0', 'cppaste>=0.0.0.dev1']
+dependencies = ['cppaste>=0.0.0.dev1']
+
+[tool.cppython.dependency-groups]
+test = ['gtest==1.17.0']
 
 [tool.cppython.generators.cmake]
 preset_file = "tool/cmake/platform/common/CMakePresets.json"
