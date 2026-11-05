@@ -18,7 +18,8 @@
 			},
 			"cacheVariables": {
 				"CMAKE_C_FLAGS_INIT": "/W4",
-				"CMAKE_CXX_FLAGS_INIT": "/W4"
+				"CMAKE_CXX_FLAGS_INIT": "/W4",
+				"CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "${sourceDir}/tool/cmake/platform/common/SetMSVCRuntime.cmake"
 			}
 		},
 		{
@@ -99,7 +100,7 @@
 		{
 			"name": "windows-msbuild-msvc-development",
 			"inherits": [
-				"cppython-debug",
+				"cppython-release",
 				"windows-msbuild-msvc"
 			],
 			"binaryDir": "${sourceDir}/build/${presetName}",
@@ -110,7 +111,7 @@
 				},
 				"CMAKE_MAP_IMPORTED_CONFIG_DEVELOPMENT": {
 					"type": "STRING",
-					"value": "Debug"
+					"value": "Release"
 				}
 			}
 		},
@@ -145,7 +146,7 @@
 		{
 			"name": "windows-ninja-clang-development",
 			"inherits": [
-				"cppython-debug",
+				"cppython-release",
 				"windows-ninja-clang"
 			],
 			"binaryDir": "${sourceDir}/build/${presetName}",
@@ -156,7 +157,7 @@
 				},
 				"CMAKE_MAP_IMPORTED_CONFIG_DEVELOPMENT": {
 					"type": "STRING",
-					"value": "Debug"
+					"value": "Release"
 				}
 			}
 		},
@@ -191,7 +192,7 @@
 		{
 			"name": "windows-ninja-msvc-development",
 			"inherits": [
-				"cppython-debug",
+				"cppython-release",
 				"windows-ninja-msvc"
 			],
 			"binaryDir": "${sourceDir}/build/${presetName}",
@@ -202,7 +203,7 @@
 				},
 				"CMAKE_MAP_IMPORTED_CONFIG_DEVELOPMENT": {
 					"type": "STRING",
-					"value": "Debug"
+					"value": "Release"
 				}
 			}
 		},

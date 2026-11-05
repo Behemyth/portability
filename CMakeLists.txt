@@ -99,3 +99,16 @@ install(
 	${CMAKE_CURRENT_BINARY_DIR}/portabilityConfigVersion.cmake
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/portability
 )
+
+# Build-tree package for local-source (editable) consumers. It mirrors the installed
+# lib/cmake/portability layout, so a local checkout resolves through the same path as the package.
+set(portability_BUILD_PACKAGE_DIR ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/cmake/portability)
+
+export(EXPORT portabilityTargets
+	FILE ${portability_BUILD_PACKAGE_DIR}/portabilityTargets.cmake
+	NAMESPACE synodic::
+	CXX_MODULES_DIRECTORY cxx-modules
+)
+
+configure_file(${CMAKE_CURRENT_BINARY_DIR}/portabilityConfig.cmake ${portability_BUILD_PACKAGE_DIR}/portabilityConfig.cmake COPYONLY)
+configure_file(${CMAKE_CURRENT_BINARY_DIR}/portabilityConfigVersion.cmake ${portability_BUILD_PACKAGE_DIR}/portabilityConfigVersion.cmake COPYONLY)

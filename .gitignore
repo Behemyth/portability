@@ -16,6 +16,9 @@
 
 # Debugger Files
 *.pdb
+.cppython.toml
+test_package/CMakeUserPresets.json
+test_package/build/
 
 # Compiled Dynamic libraries
 *.so
