@@ -28,7 +28,7 @@ set(_configure_command
 	-S "${TEST_SOURCE_DIR}"
 	-B "${_consumer_binary_dir}"
 	-G "${TEST_GENERATOR}"
-	"-DCMAKE_PREFIX_PATH=${_install_prefix};${TEST_GENERATORS_DIR}"
+	"-DCMAKE_PREFIX_PATH=${_install_prefix}"
 )
 
 if(TEST_GENERATOR_PLATFORM)
@@ -43,7 +43,22 @@ endif()
 if(TEST_MAKE_PROGRAM)
 	list(APPEND _configure_command "-DCMAKE_MAKE_PROGRAM=${TEST_MAKE_PROGRAM}")
 endif()
-if(NOT TEST_IS_MULTI_CONFIG AND TEST_CONFIG)
+# Build the consumer with the same compiler and flags as the package under test.
+if(TEST_CXX_COMPILER AND NOT TEST_GENERATOR MATCHES "^Visual Studio")
+	list(APPEND _configure_command "-DCMAKE_CXX_COMPILER=${TEST_CXX_COMPILER}")
+endif()
+if(TEST_CXX_FLAGS)
+	list(APPEND _configure_command "-DCMAKE_CXX_FLAGS=${TEST_CXX_FLAGS}")
+endif()
+if(TEST_EXE_LINKER_FLAGS)
+	list(APPEND _configure_command "-DCMAKE_EXE_LINKER_FLAGS=${TEST_EXE_LINKER_FLAGS}")
+endif()
+if(TEST_CXX_STDLIB_MODULES_JSON)
+	list(APPEND _configure_command "-DCMAKE_CXX_STDLIB_MODULES_JSON=${TEST_CXX_STDLIB_MODULES_JSON}")
+endif()
+if(TEST_IS_MULTI_CONFIG AND TEST_CONFIG)
+	list(APPEND _configure_command "-DCMAKE_CONFIGURATION_TYPES=${TEST_CONFIG}")
+elseif(TEST_CONFIG)
 	list(APPEND _configure_command "-DCMAKE_BUILD_TYPE=${TEST_CONFIG}")
 endif()
 
